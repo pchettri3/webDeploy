@@ -1,0 +1,94 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+     
+        "configPropertiesRemoteDebuggingVersion": {
+            "value": "VS2019"
+        },
+        "sitesSubscriptionId": {
+            "value": "sitesubidph"
+        },
+        "sitesKind": {
+            "value": "app,linux"
+        },
+        "configPropertiesScmType": {
+            "value": "ExternalGit"
+        },
+        "sitesIdentityType": {
+            "value": "SystemAssigned"
+        },
+        "environment": {
+            "value": "dr"
+        },
+        "environmentlist": {
+            "value": {
+                "Services": "svc",
+                "Prod": "prd",
+                "DEV": "ttt-dev",
+                "UAT": "ttt-uat",
+                "Test": "ttt-tst",
+                "DR": "dr"
+            }
+        },
+        "locationlist": {
+            "value": {
+                "westeurope": "weu",
+                "northeurope": "neu",
+                "westus3": "wus3",
+                "westus": "wus",
+                "southeastasia": "sea",
+                "eastus": "eus"
+            }
+        },
+      //  "Location": {
+        //    "value": "westus3"
+        //},
+        "adminUsername": {
+            "value": "sqladm"
+        },
+        "administratorLoginPassword": {
+            "value": "@#ssw0rd1234"
+        },
+        "networkResourceGroup": {
+            "value": "pct-network-rg"
+        },
+        "appInstanceName": {
+            "value": "pctestappkpg1"
+        },
+        "sitesResourceGroup": {
+            "value": "pct-ase-rg"
+        },
+    
+        "Linuxversion": {
+            "value": "LXVplaeceholder"
+        },
+        "dbdeployType": {
+            "value": "dbPlaceHolder"
+        },
+        "DeployStorage": {
+            "value": "no"
+        },
+        "InfoPrdPrivateDNSID": {
+            "value": "/subscriptions/serviceSubID/servicesResourceGroup/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net"
+        },
+        "existingSubnetAddressPrefix": {
+            "value": "192.168.66.32/27"
+        },
+        "tenantId": {
+            "value": "lab-tenant-id"
+        },
+        "userID": {
+            "value": "useruuid"
+        },
+        "amerworkspaceId": {
+            "value": "subscriptions/subid/resourceGroups/amer-network-rg/providers/Microsoft.OperationalInsights/workspaces/amer-laworkspace"
+        },
+        "apacworkspaceId": {
+            "value": "subscriptions/subid/resourceGroups/amer-network-rg/providers/Microsoft.OperationalInsights/workspaces/apac-laworkspace"
+        },
+        "emeaWorkspaceId": {
+            "value": "subscriptions/subid/resourceGroups/amer-network-rg/providers/Microsoft.OperationalInsights/workspaces/emea-laworkspace"
+        }
+    }
+}
