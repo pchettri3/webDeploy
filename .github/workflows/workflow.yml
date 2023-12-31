@@ -24,7 +24,7 @@ jobs:
     with:
       environmentType: test
       #resourceGroupName: ToyWebsiteTest
-      reviewApiUrl: https://sandbox.contoso.com/reviews
+      #reviewApiUrl: https://sandbox.contoso.com/reviews
     secrets:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT }}
