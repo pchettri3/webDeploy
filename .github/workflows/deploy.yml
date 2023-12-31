@@ -59,6 +59,14 @@ jobs:
            #reviewApiKey=${{ secrets.reviewApiKey }}
          additionalArguments: --what-if
 
+         
+     - name: Azure PowerShell script
+       uses: azure/powershell@v1
+       with:
+          azPSVersion: "latest"
+          inlineScript: |
+            Get-AzContext
+
   deploy:
     needs: validate
     environment: ${{ inputs.environmentType }}
