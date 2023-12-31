@@ -3,15 +3,15 @@ name: deploy
 on:
   workflow_call:
     inputs:
-      environmentType:
-        required: true
-        type: string
-      resourceGroupName:
-        required: true
-        type: string
-      reviewApiUrl:
-        required: true
-        type: string
+#      environmentType:
+ #       required: true
+  #      type: string
+    #  resourceGroupName:
+     #   required: true
+      #  type: string
+    #  reviewApiUrl:
+     #   required: true
+      #  type: string
     secrets:
       AZURE_CLIENT_ID:
         required: true
@@ -19,8 +19,8 @@ on:
         required: true
       AZURE_SUBSCRIPTION_ID:
         required: true
-      reviewApiKey:
-        required: true
+  #    reviewApiKey:
+   #     required: true
 
 jobs:
   validate:
@@ -50,12 +50,12 @@ jobs:
        name: Run what-if
        with:
          failOnStdErr: false
-         resourceGroupName: ${{ inputs.resourceGroupName }}
+        # resourceGroupName: ${{ inputs.resourceGroupName }}
          template: ./deploy/main.bicep
          parameters: >
            environmentType=${{ inputs.environmentType }}
-           reviewApiUrl=${{ inputs.reviewApiUrl }}
-           reviewApiKey=${{ secrets.reviewApiKey }}
+          # reviewApiUrl=${{ inputs.reviewApiUrl }}
+           #reviewApiKey=${{ secrets.reviewApiKey }}
          additionalArguments: --what-if
 
   deploy:
@@ -78,9 +78,9 @@ jobs:
       with:
         failOnStdErr: false
         deploymentName: ${{ github.run_number }}
-        resourceGroupName: ${{ inputs.resourceGroupName }}
+        #resourceGroupName: ${{ inputs.resourceGroupName }}
         template: ./deploy/main.bicep
         parameters: >
            environmentType=${{ inputs.environmentType }}
-           reviewApiUrl=${{ inputs.reviewApiUrl }}
-           reviewApiKey=${{ secrets.reviewApiKey }}
+       #    reviewApiUrl=${{ inputs.reviewApiUrl }}
+        #   reviewApiKey=${{ secrets.reviewApiKey }}
