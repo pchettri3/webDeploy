@@ -34,6 +34,30 @@ jobs:
          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
          enable-AzPSSession: true
+     - if: inputs.environmentType != 'Production'
+       uses: azure/arm-deploy@v1
+       name: Run preflight validation
+       with:
+         deploymentName: ${{ github.run_number }}
+       #  resourceGroupName: ${{ inputs.resourceGroupName }}
+         template: ./deploy/main.bicep
+         parameters: >
+           environmentType=${{ inputs.environmentType }}
+         #  reviewApiUrl=${{ inputs.reviewApiUrl }}
+         #  reviewApiKey=${{ secrets.reviewApiKey }}
+         deploymentMode: Validate
+   #  - if: inputs.environmentType == 'Production'
+    #   uses: azure/arm-deploy@v1
+     #  name: Run what-if
+      # with:
+       #  failOnStdErr: false
+        # resourceGroupName: ${{ inputs.resourceGroupName }}
+        # template: ./deploy/main.bicep
+         #parameters: >
+  #         environmentType=${{ inputs.environmentType }}
+          # reviewApiUrl=${{ inputs.reviewApiUrl }}
+           #reviewApiKey=${{ secrets.reviewApiKey }}
+         additionalArguments: --what-if
 
          
      - name: Azure PowerShell script
@@ -59,5 +83,15 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         pwsh-version: '7.4'
-        enable-AzPSSession: true
-
+    - uses: azure/arm-deploy@v1
+      id: deploy
+      name: Deploy Bicep file
+      with:
+        failOnStdErr: false
+        deploymentName: ${{ github.run_number }}
+        #resourceGroupName: ${{ inputs.resourceGroupName }}
+        template: ./deploy/main.bicep
+        parameters: >
+           environmentType=${{ inputs.environmentType }}
+       #    reviewApiUrl=${{ inputs.reviewApiUrl }}
+        #   reviewApiKey=${{ secrets.reviewApiKey }}
