@@ -12,23 +12,22 @@ permissions:
   contents: read
 
 jobs:
+  install-dependencies:
+    name: Install dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install from PSGallery
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module SqlServer, PSScriptAnalyzer
 
   # Lint the Bicep file.
   lint:
     uses: ./.github/workflows/lint.yml
 
   
-   
-    
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-    
-      - name: Install PowerShell
-        uses: actions/setup-pwsh@v1
-        with:
-          pwsh-version: '7.4'  # Specify the desired PowerShell version
-    
   
   # Deploy to the test environment.
   deploy-test:
@@ -46,6 +45,8 @@ jobs:
       #reviewApiKey: ${{ secrets.REVIEW_API_KEY_TEST }}
 
 
+
+      
   # Deploy to the production environment.
 #  deploy-production:
  #   uses: ./.github/workflows/deploy.yml

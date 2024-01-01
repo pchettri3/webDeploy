@@ -39,22 +39,22 @@ jobs:
        name: Run preflight validation
        with:
          deploymentName: ${{ github.run_number }}
-         resourceGroupName: ${{ inputs.resourceGroupName }}
+       #  resourceGroupName: ${{ inputs.resourceGroupName }}
          template: ./deploy/main.bicep
          parameters: >
            environmentType=${{ inputs.environmentType }}
          #  reviewApiUrl=${{ inputs.reviewApiUrl }}
          #  reviewApiKey=${{ secrets.reviewApiKey }}
          deploymentMode: Validate
-     - if: inputs.environmentType == 'Production'
-       uses: azure/arm-deploy@v1
-       name: Run what-if
-       with:
-         failOnStdErr: false
+   #  - if: inputs.environmentType == 'Production'
+    #   uses: azure/arm-deploy@v1
+     #  name: Run what-if
+      # with:
+       #  failOnStdErr: false
         # resourceGroupName: ${{ inputs.resourceGroupName }}
-         template: ./deploy/main.bicep
-         parameters: >
-           environmentType=${{ inputs.environmentType }}
+        # template: ./deploy/main.bicep
+         #parameters: >
+  #         environmentType=${{ inputs.environmentType }}
           # reviewApiUrl=${{ inputs.reviewApiUrl }}
            #reviewApiKey=${{ secrets.reviewApiKey }}
          additionalArguments: --what-if
