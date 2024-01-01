@@ -17,6 +17,19 @@ jobs:
   lint:
     uses: ./.github/workflows/lint.yml
 
+  
+   
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+    
+      - name: Install PowerShell
+        uses: actions/setup-pwsh@v1
+        with:
+          pwsh-version: '7.4'  # Specify the desired PowerShell version
+    
+  
   # Deploy to the test environment.
   deploy-test:
     uses: ./.github/workflows/deploy.yml
