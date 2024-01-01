@@ -75,12 +75,14 @@ jobs:
       appServiceAppHostName: ${{ steps.deploy.outputs.appServiceAppHostName }}
     steps:
     - uses: actions/checkout@v3
-    - uses: azure/login@v1
+    - uses: azure/login@v1 
+    - uses: actions/setup-pwsh@v1
       name: Sign in to Azure
       with:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        pwsh-version: '7.4'
     - uses: azure/arm-deploy@v1
       id: deploy
       name: Deploy Bicep file
